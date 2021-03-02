@@ -34,20 +34,20 @@
 					</view>
 					<!-- #endif -->
 					<view v-for="link in links" :key="link.url" class="menu-item">
-						<uni-link :href="link.url" :text="link.text" />
+						<uni-link :href="link.url" :text="$t(link.text)" />
 					</view>
 					<template v-if="userInfo.username">
-						<!-- <view class="menu-item username">
-							<text>{{userInfo.username}}</text>️
-						</view> -->
+						<view class="menu-item" @click="changeLanguage">
+							<text>{{ $t("topwindow.text.changeLanguage") }}</text>
+						</view>
+						<view class="menu-item" @click="changePassword">
+							<text>{{ $t("topwindow.text.changePwd") }}</text>
+						</view>
 						<view class="menu-item username">
 							<text>{{userInfo.username}}</text>
 						</view>
-						<view class="menu-item" @click="chagePassword">
-							<text>修改密码</text>
-						</view>
 						<view class="menu-item ">
-							<text class="logout pointer" @click="logout">退出</text>
+							<text class="logout pointer" @click="logout">{{ $t("topwindow.text.signOut") }}</text>
 						</view>
 					</template>
 					<view class="popup-menu__arrow"></view>
@@ -156,8 +156,17 @@
 					url: '/pages/changepwd/changepwd'
 				})
 			},
-			chagePassword() {
+			changePassword() {
 				!this.matchLeftWindow ? this.toPasswordPage() : this.showPasswordPopup()
+			},
+			changeLanguage() {
+				if (this.$i18n.locale === 'en') {
+					this.$i18n.locale = 'zh-Hans'
+				} else if (this.$i18n.locale === 'zh-Hans') {
+					this.$i18n.locale =	 'zh-Hant'
+				} else {
+					this.$i18n.locale = 'en'
+				}
 			}
 		}
 	}

@@ -14,8 +14,8 @@
 				<uni-easyinput type="textarea" v-model="formData.comment" :clearable="false" placeholder="请输入备注" />
 			</uni-forms-item>
 			<view class="uni-button-group">
-				<button style="width: 100px;" type="primary" class="uni-button" @click="submitForm">提交</button>
-				<navigator open-type="navigateBack" style="margin-left: 15px;"><button style="width: 100px;" class="uni-button">返回</button></navigator>
+				<button style="width: 100px;" type="primary" class="uni-button" @click="submitForm">{{$t('common.button.submit')}}</button>
+				<navigator open-type="navigateBack" style="margin-left: 15px;"><button style="width: 100px;" class="uni-button">{{$t('common.button.back')}}</button></navigator>
 			</view>
 		</uni-forms>
 	</view>

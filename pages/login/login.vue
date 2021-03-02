@@ -4,21 +4,21 @@
 			<image :src="logo" mode="heightFix"></image>
 		</view>
 		<view class="uni-header no-padding">
-			<view class="uni-title">系统登录</view>
+			<view class="uni-title">{{$t('login.text.title')}}</view>
 		</view>
 		<view class="uni-container">
 			<uni-forms ref="form" v-model="formData" :rules="rules" @submit="submit">
 				<uni-forms-item left-icon="uni-icons-person-filled" name="username" labelWidth="35">
-					<input ref="usernameInput" @confirm="submitForm" class="uni-input-border" type="text" placeholder="账户"
+					<input ref="usernameInput" @confirm="submitForm" class="uni-input-border" type="text" :placeholder="$t('login.field.username')"
 					 v-model="formData.username" />
 				</uni-forms-item>
 				<uni-forms-item left-icon="uni-icons-locked-filled" class="icon-container" name="password" labelWidth="35">
 					<input ref="passwordInput" @confirm="submitForm" class="uni-input-border" :password="showPassword"
-					 placeholder="密码" v-model="formData.password" />
+					 :placeholder="$t('login.field.password')" v-model="formData.password" />
 					<text class="uni-icon-password-eye pointer" :class="[!showPassword ? 'uni-eye-active' : '']" @click="changePassword">&#xe568;</text>
 				</uni-forms-item>
 				<uni-forms-item v-if="needCaptcha" left-icon="uni-icons-person-filled" class="icon-container" name="captchaText" labelWidth="35">
-					<input ref="captchaInput" @confirm="submitForm" class="uni-input-border" type="text" placeholder="验证码"
+					<input ref="captchaInput" @confirm="submitForm" class="uni-input-border" type="text" :placeholder="$t('login.field.captcha')"
 					 v-model="formData.captchaText" />
 					 <view class="admin-captcha-img pointer" @click="createCaptcha">
 						 <i v-if="captchaLoading" class="uni-loading"></i>
@@ -26,11 +26,11 @@
 					 </view>
 				</uni-forms-item>
 				<view class="uni-button-group">
-					<button class="uni-button uni-button-full" type="primary" :loading="loading" :disabled="loading" @click="submitForm">登录</button>
+					<button class="uni-button uni-button-full" type="primary" :loading="loading" :disabled="loading" @click="submitForm">{{$t('login.button.login')}}</button>
 				</view>
 			</uni-forms>
 			<view class="uni-tips">
-				<text class="uni-tips-text" @click="initAdmin">如无管理员账号，请先创建管理员...</text>
+				<text class="uni-tips-text" @click="initAdmin">{{$t('login.text.prompt')}}...</text>
 			</view>
 		</view>
 	</view>

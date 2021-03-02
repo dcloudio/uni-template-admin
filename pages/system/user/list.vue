@@ -2,14 +2,14 @@
 	<view>
 		<view class="uni-header">
 			<view class="uni-group hide-on-phone">
-				<view class="uni-title">用户管理</view>
+				<view class="uni-title">{{$t('user.text.userManager')}}</view>
 				<view class="uni-sub-title"></view>
 			</view>
 			<view class="uni-group">
-				<input class="uni-search" type="text" v-model="query" @confirm="search"  placeholder="请输入搜索内容" />
-				<button class="uni-button" type="default" size="mini" @click="search">搜索</button>
-				<button class="uni-button" type="default" size="mini" @click="navigateTo('./add')">新增</button>
-				<button class="uni-button" type="default" size="mini" @click="delTable" :disabled="!selectedIndexs.length">批量删除</button>
+				<input class="uni-search" type="text" v-model="query" @confirm="search"  :placeholder="$t('common.placeholder.query')" />
+				<button class="uni-button" type="default" size="mini" @click="search">{{$t('common.button.search')}}</button>
+				<button class="uni-button" type="default" size="mini" @click="navigateTo('./add')">{{$t('common.button.add')}}</button>
+				<button class="uni-button" type="default" size="mini" @click="delTable" :disabled="!selectedIndexs.length">{{$t('common.button.batchDelete')}}</button>
 			</view>
 		</view>
 		<view class="uni-container">
@@ -39,8 +39,8 @@ register_date" :threshold="[0, 0]" />
 						</uni-td>
 						<uni-td align="center">
 							<view class="uni-group">
-								<button @click="navigateTo('./edit?id='+item._id, false)" class="uni-button" size="mini" type="primary">修改</button>
-								<button @click="confirmDelete(item)" class="uni-button" size="mini" type="warn">删除</button>
+								<button @click="navigateTo('./edit?id='+item._id, false)" class="uni-button" size="mini" type="primary">{{$t('common.button.edit')}}</button>
+								<button @click="confirmDelete(item)" class="uni-button" size="mini" type="warn">{{$t('common.button.delete')}}</button>
 							</view>
 						</uni-td>
 					</uni-tr>

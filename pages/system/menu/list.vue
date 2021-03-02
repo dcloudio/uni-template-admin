@@ -5,11 +5,11 @@
 				<view class="uni-tabs__nav-scroll">
 					<view class="uni-tabs__nav">
 						<view @click="switchTab('menus')" :class="{'is-active':currentTab==='menus'}" class="uni-tabs__item">
-							菜单管理
+							{{$t('menu.text.menuManager')}}
 						</view>
 						<view @click="switchTab('pluginMenus')" v-if="pluginMenus.length" :class="{'is-active':currentTab==='pluginMenus'}"
 						 class="uni-tabs__item">
-							待添加菜单
+							{{$t('menu.text.additiveMenu')}}
 							<uni-badge class="menu-badge" :text="pluginMenus.length" type="error"></uni-badge>
 						</view>
 					</view>
@@ -19,7 +19,7 @@
 		<view v-show="currentTab==='menus'">
 			<view class="uni-header" style="border-bottom: 0;margin-bottom: -15px;">
 				<view class="uni-group">
-					<button @click="navigateTo('./add')" size="mini" type="primary">新增一级菜单</button>
+					<button @click="navigateTo('./add')" size="mini" type="primary">{{$t('menu.button.addFirstLevelMenu')}}</button>
 				</view>
 				<view class="uni-group">
 
@@ -28,12 +28,12 @@
 			<view class="uni-container">
 				<uni-table :loading="loading" :emptyText="errMsg || '没有更多数据'" border stripe>
 					<uni-tr>
-						<uni-th align="center">排序</uni-th>
+						<uni-th width="50" align="center">排序</uni-th>
 						<uni-th width="200" align="center">名称</uni-th>
-						<uni-th align="center">标识</uni-th>
-						<uni-th align="center">URL</uni-th>
+						<uni-th width="100" align="center">标识</uni-th>
+						<uni-th width="100" align="center">URL</uni-th>
 						<uni-th width="100" align="center">是否启用</uni-th>
-						<uni-th width="160" align="center">操作</uni-th>
+						<uni-th width="200" align="center">操作</uni-th>
 					</uni-tr>
 					<uni-tr v-for="(item,index) in menus" :key="index">
 						<uni-td align="center">{{item.sort}}</uni-td>
@@ -43,10 +43,10 @@
 						<uni-td align="center" :class="{'menu-disable':!item.enable}">{{item.enable?'已启用':'未启用'}}</uni-td>
 						<uni-td align="center">
 							<view class="uni-group">
-								<button v-if="!item.url" @click="navigateTo('./add?parent_id='+item.menu_id, false)" class="uni-button" size="mini" type="primary">子菜单</button>
-								<button @click="navigateTo('./edit?id='+item._id, false)" class="uni-button" size="mini" type="primary">修&nbsp;&nbsp;&nbsp;改</button>
+								<button v-if="!item.url" @click="navigateTo('./add?parent_id='+item.menu_id, false)" class="uni-button" size="mini" type="primary">{{$t('menu.button.addChildMenu')}}</button>
+								<button @click="navigateTo('./edit?id='+item._id, false)" class="uni-button" size="mini" type="primary">{{$t('common.button.edit')}}</button>
 								<button :style="{visibility:item.menu_id==='system_menu'||item.menu_id==='system_management'?'hidden':'initial'}"
-								 @click="confirmDelete(item)" class="uni-button" size="mini" type="warn">删&nbsp;&nbsp;&nbsp;除</button>
+								 @click="confirmDelete(item)" class="uni-button" size="mini" type="warn">{{$t('common.button.delete')}}</button>
 							</view>
 						</uni-td>
 					</uni-tr>
